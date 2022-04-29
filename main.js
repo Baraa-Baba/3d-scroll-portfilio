@@ -1,8 +1,7 @@
 import './src/style.css'
-import './dist/output.css'
+import './output.css'
 import * as THREE from 'three'
 
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 const scence = new THREE.Scene()
 
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -20,7 +19,6 @@ renderer.render(scence, camera)
 const ambentLight = new THREE.AmbientLight(0xfffff)
 scence.add(ambentLight)
 
-const controls = new OrbitControls(camera, renderer.domElement)
 
 function addstar() {
   const goematry = new THREE.SphereGeometry(0.25, 24, 24)
@@ -33,8 +31,7 @@ function addstar() {
   star.position.set(x, y, z)
   scence.add(star)
 }
-const Baraatexture = new THREE.TextureLoader().load('./assets/profile.jpg')
-
+const Baraatexture = new THREE.TextureLoader().load('https://i.ibb.co/3YS0Y3j/profile.jpg')
 
 const baraa = new THREE.Mesh(
   new THREE.BoxGeometry(9, 9, 9),
@@ -48,11 +45,12 @@ Array(2000).fill().forEach(addstar)
 
 var skillcubelist = []
 function createskillcube(imgurl, shape, x, y, z) {
-  const Skilltexture = new THREE.TextureLoader().load(imgurl)
-
+  const textureLoader = new THREE.TextureLoader()
+  textureLoader.crossOrigin = "Anonymous"
+  const myTexture = textureLoader.load(imgurl)
   const skillcube = new THREE.Mesh(
     shape,
-    new THREE.MeshBasicMaterial({ map: Skilltexture })
+    new THREE.MeshBasicMaterial({ map: myTexture })
   )
   skillcubelist = [...skillcubelist, skillcube]
   skillcube.position.x = x + skillY * 3
@@ -60,18 +58,18 @@ function createskillcube(imgurl, shape, x, y, z) {
   skillcube.position.z = z
   scence.add(skillcubelist[skillcubelist.length - 1])
 }
-var skillY = 10
-createskillcube('./assets/tailwindcssicon.png', new THREE.CylinderGeometry(3, 3, 3), 100, 0, 0)
-createskillcube('./assets/html-icon.png', new THREE.BoxGeometry(4, 4, 4), 140, 14, 0)
-createskillcube('./assets/next-icon.png', new THREE.BoxGeometry(4, 4, 4), 150, 0, 0)
-createskillcube('./assets/svelte-icon.png', new THREE.BoxGeometry(4, 4, 4), 120, 10, 0)
-createskillcube('./assets/github-icon.png', new THREE.BoxGeometry(4, 4, 4), 130, 0, 0)
-createskillcube('./assets/js-icon.png', new THREE.BoxGeometry(4, 4, 4), 100, 15, 0)
-createskillcube('./assets/react-icon.png', new THREE.BoxGeometry(6, 6, 6), 130, 15, 0)
-createskillcube('./assets/css-icon.png', new THREE.BoxGeometry(4, 4, 4), 110, -5, 0)
+var skillY = 12
+createskillcube('https://i.ibb.co/tPVDQ4T/tailwindcssicon.png', new THREE.CylinderGeometry(3, 3, 3), 100, 0, 0)
+createskillcube('https://i.ibb.co/fMYyjnT/html-icon.png', new THREE.BoxGeometry(4, 4, 4), 140, 14, 0)
+createskillcube('https://i.ibb.co/68ybrXD/next-icon.png', new THREE.BoxGeometry(4, 4, 4), 150, 0, 0)
+createskillcube('https://i.ibb.co/Bt3QyMp/svelte-icon.png', new THREE.BoxGeometry(4, 4, 4), 120, 10, 0)
+createskillcube('https://i.ibb.co/WkxYJ0S/github-icon.png', new THREE.BoxGeometry(4, 4, 4), 130, 0, 0)
+createskillcube('https://i.ibb.co/r5LRCmY/js-icon.png', new THREE.BoxGeometry(4, 4, 4), 100, 15, 0)
+createskillcube('https://i.ibb.co/THPh4NV/react-icon.png', new THREE.BoxGeometry(6, 6, 6), 130, 15, 0)
+createskillcube('https://i.ibb.co/JzV3NgH/css-icon.png', new THREE.BoxGeometry(4, 4, 4), 110, -5, 0)
 
-createskillcube('./assets/css-icon.png', new THREE.BoxGeometry(4, 4, 4), 30, 15, 0)
-const spaceTexture = new THREE.TextureLoader().load('./assets/space.jpg')
+
+const spaceTexture = new THREE.TextureLoader().load('https://i.ibb.co/X3Vj5G7/space.jpg')
 scence.background = spaceTexture;
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
@@ -82,9 +80,9 @@ function moveCamera() {
   console.log(t)
 
   for (var i = 0; i < skillcubelist.length; i++) {
-    skillcubelist[i].rotation.x += 0.05
-    skillcubelist[i].rotation.z += 0.04
-    skillcubelist[i].rotation.y += 0.1
+    skillcubelist[i].rotation.x -= 0.1
+    skillcubelist[i].rotation.z -= 0.09
+    skillcubelist[i].rotation.y -= 0.1
   }
 }
 document.body.onscroll = moveCamera
@@ -108,7 +106,30 @@ function animate() {
     skillcubelist[i].rotation.x += 0.005
     skillcubelist[i].rotation.y += 0.01
   }
-  controls.update()
   renderer.render(scence, camera)
 }
 animate()
+var i = 0
+var text = ['frontend developer', 'blogger', 'contributer']
+var typing = ''
+var typingfinished = false
+var k = 0
+const int = setInterval(() => {
+  if (i < text[k].length) {
+    typing += text[k][i]
+    document.getElementById('something').innerText = typing
+    i++
+  }
+  else {
+    typing = ''
+    i = 0
+    if (k != text.length - 1) {
+      k++
+    } else {
+      k = 0
+    }
+  }
+}, 350)
+
+
+
