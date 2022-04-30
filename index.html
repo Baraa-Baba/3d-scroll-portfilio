@@ -2,13 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon.17e50649.svg" />
-    <link rel="shortcut icon" href="/assets/profile.8c30d6d9.jpg">
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="shortcut icon" href="./assets/profile.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Baraa Baba</title>
-    <script type="module" crossorigin src="/assets/index.52ed3a57.js"></script>
-    <link rel="stylesheet" href="/assets/index.8aa6c83d.css">
   </head>
   <body>
     
@@ -28,7 +26,7 @@
     </div>
 
       <div class="inline-block sm:block  border-white border-2 max-w-fit px-4 rounded-full">
-      <a href="http://baraa-baba.vercel.app" class="text-5xl inline-block" target="_blank" rel="noopener noreferrer">
+      <a href="http://baraa-baba.vercel.app" class="text-4xl md:text-5xl  inline-block" target="_blank" rel="noopener noreferrer">
         other portfolio
       </a><span class="ques bg-green-500 inline-block text-white  text-5xl">?</span>
       <span class="details bg-black  hidden absolute  sm:w-[20rem] w-[100vw] text-2xl">this website is better for <strong> mobile users</strong> and its a unique experience where 
@@ -58,9 +56,52 @@
     <h1>skills</h1>
   </div>
     </main>
-    
+    <style>
+      .glow-button{
+  box-shadow: 0 15px 15px linear-gradient(pink,purple),
+  0 -15px 15px linear-gradient(pink,purple),
+  10 0 15px linear-gradient(pink,purple);
+      }
+      canvas{
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+h1,h2,h3,h4,h5,h6{
+  height: 3rem;
+}
+.main-cont{
+  display: none;
+  position: absolute;
+  color: white;
+  width: 100vw;
+  left: 0;
+  font-size: 4rem;
+}
+.ques:hover~.details{
+  display: block;
+}
+.about-links{
+  color:cyan;
+}
+.about-links:hover{
+  color: rgb(8, 255, 255);
+  text-shadow: 2px 2px 2px rgb(8, 255, 255) ,
+  -2px -2px 2px rgb(8, 255, 255);
+}
+.card{
+  font-size: 2rem;
+  padding: 1rem;
+  margin: 0 0 0 0;
+background-color: rgba(0, 0, 0, 0.5);
+}
+#right{
+  margin: 0 auto 0 0; 
+}
 
-    
+    </style>
+
+    <script type="module" src="/main.js"></script>
     <script src="./typingEffect.js"></script>
   </body>
 </html>
