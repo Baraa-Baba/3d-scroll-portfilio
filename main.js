@@ -44,6 +44,15 @@ scence.add(baraa)
 Array(2000).fill().forEach(addstar)
 
 var skillcubelist = []
+var skillY
+if (innerWidth < 400) {
+  skillY = 0
+} else if (innerWidth < 800) {
+  skillY = 5
+}
+else {
+  skillY = 10
+}
 function createskillcube(imgurl, shape, x, y, z) {
   const textureLoader = new THREE.TextureLoader()
   textureLoader.crossOrigin = "Anonymous"
@@ -58,7 +67,6 @@ function createskillcube(imgurl, shape, x, y, z) {
   skillcube.position.z = z
   scence.add(skillcubelist[skillcubelist.length - 1])
 }
-var skillY = 20
 createskillcube('https://i.ibb.co/tPVDQ4T/tailwindcssicon.png', new THREE.CylinderGeometry(3, 3, 3), 100, 0, 0)
 createskillcube('https://i.ibb.co/fMYyjnT/html-icon.png', new THREE.BoxGeometry(4, 4, 4), 140, 14, 0)
 createskillcube('https://i.ibb.co/68ybrXD/next-icon.png', new THREE.BoxGeometry(4, 4, 4), 150, 0, 0)
@@ -86,6 +94,7 @@ function moveCamera() {
   }
 }
 document.body.onscroll = moveCamera
+var Ypos
 window.addEventListener('resize', onWindowResize, false);
 
 function onWindowResize() {
@@ -94,7 +103,6 @@ function onWindowResize() {
   camera.updateProjectionMatrix();
 
   renderer.setSize(window.innerWidth, window.innerHeight);
-
 }
 const axesHelper = new THREE.AxesHelper(5);
 scence.add(axesHelper);
