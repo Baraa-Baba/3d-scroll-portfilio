@@ -12,6 +12,14 @@
     
     <canvas id="bg"></canvas>
     <main class="main-cont  ">
+
+
+
+      
+
+
+
+
       <h1 id="demo"></h1>
       <div class="inroduction h-[100vh] w-[100vw] ">
       <h1 class='m-0 h-fit text-6xl sm:text-8xl'>Baraa Baba</h1>
@@ -19,7 +27,7 @@
       <div class="flex w-[100vw] sm:flex-row flex-col ">
   
       <div class="sm:inline-block block mr-4 glow-button w-fit">
-      <a type="submit" href="mailto:baraababawork@gmail.com" 
+      <a  id='contact'
       class="text-5xl mb-4 cursor-pointer p-4 inline-block border-2 border-white rounded-full  glow-button ">
       contact me
     </a>
@@ -52,9 +60,23 @@
     long term and whats best for you.
   </div>
 </div>
-  <div class="skils h-[300vh]">
+  <div class="skils h-[100vh]">
     <h1>skills</h1>
   </div>
+  
+  <div id='contact-me' class="contact-cont">
+    <div>
+        <h1 class="contact-header">Contact Me</h1>
+        <form target="_blank" action="https://formsubmit.co/9d6d1a7d16373e389623c00f48207d1c" method="POST">
+              <input type="text" name="name"  class="contact-input" placeholder="Full Name" required />
+               <input type="email" name="email" class="contact-input" placeholder="Email Address" required />
+                <textarea placeholder="Your Message" class='contact-message'
+                    name="message" rows="6" required></textarea>
+            <button type="submit" class="contact-submit">Submit Form</button>
+        </form>
+    </div>
+</div>
+
     </main>
     <style>
       .glow-button{
@@ -103,7 +125,57 @@ background-color: rgba(0, 0, 0, 0.5);
   font-size:1.5rem;
     }
 }
-
+.contact-cont{
+  padding: 1rem;
+}
+.contact-header{
+  font-size: 4rem;
+  margin-bottom: 4rem;
+  font-weight: 600;
+  color:white;
+}
+.contact-input{
+  max-width: 100vw;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  border-radius: 9999px;
+  background: transparent;
+  display: block;
+  border: 3px solid white;
+}
+.contact-input:focus,.contact-message:focus,.contact-submit:hover{
+  border: 3px solid rgb(0, 89, 255);
+  outline: none;
+}
+.contact-message{
+  width: 40rem;
+  max-width: 100vw;
+  background: transparent;
+  border: 2px solid white;
+  resize:horizontal;
+  font-size: 2rem;
+}
+.contact-submit{
+  display: block;
+  border-radius: 9999px;
+  font-size: 2.5rem;
+  max-width: 100vw;
+  padding: 0.5rem;
+  background: transparent;
+  border: 2px solid white;
+}
+@media (max-width:700px) {
+  .contact-input{
+    font-size: 2rem;
+  }
+  .contact-message{
+   font-size: 1rem; 
+   width: 95vw;
+  }
+  .contact-submit{
+    font-size: 2rem;
+  }
+}
     </style>
 
     <script type="module" src="/main.js"></script>
