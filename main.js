@@ -1,7 +1,6 @@
 import './src/style.css'
 import './output.css'
 import * as THREE from 'three'
-
 const scence = new THREE.Scene()
 
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -25,8 +24,8 @@ function addstar() {
   const matriel = new THREE.MeshBasicMaterial({ color: 0xffffff })
   const star = new THREE.Mesh(goematry, matriel)
 
-  const x = THREE.MathUtils.randFloatSpread(1000)
-  const y = THREE.MathUtils.randFloatSpread(100)
+  const x = THREE.MathUtils.randFloatSpread(200)
+  const y = THREE.MathUtils.randFloatSpread(1000)
   const z = THREE.MathUtils.randFloatSpread(200)
   star.position.set(x, y, z)
   scence.add(star)
@@ -40,6 +39,9 @@ const baraa = new THREE.Mesh(
 baraa.position.x = 20
 baraa.position.y = 0
 scence.add(baraa)
+
+
+
 
 Array(2000).fill().forEach(addstar)
 
@@ -67,25 +69,43 @@ function createskillcube(imgurl, shape, x, y, z) {
   skillcube.position.z = z
   scence.add(skillcubelist[skillcubelist.length - 1])
 }
-createskillcube('https://i.ibb.co/tPVDQ4T/tailwindcssicon.png', new THREE.CylinderGeometry(3, 3, 3), 100, 0, 0)
-createskillcube('https://i.ibb.co/fMYyjnT/html-icon.png', new THREE.BoxGeometry(4, 4, 4), 140, 14, 0)
-createskillcube('https://i.ibb.co/68ybrXD/next-icon.png', new THREE.BoxGeometry(4, 4, 4), 150, 0, 0)
-createskillcube('https://i.ibb.co/Bt3QyMp/svelte-icon.png', new THREE.BoxGeometry(4, 4, 4), 120, 10, 0)
-createskillcube('https://i.ibb.co/WkxYJ0S/github-icon.png', new THREE.BoxGeometry(4, 4, 4), 130, 0, 0)
-createskillcube('https://i.ibb.co/r5LRCmY/js-icon.png', new THREE.BoxGeometry(4, 4, 4), 100, 15, 0)
-createskillcube('https://i.ibb.co/THPh4NV/react-icon.png', new THREE.BoxGeometry(6, 6, 6), 130, 15, 0)
-createskillcube('https://i.ibb.co/JzV3NgH/css-icon.png', new THREE.BoxGeometry(4, 4, 4), 110, -5, 0)
+createskillcube('https://i.ibb.co/tPVDQ4T/tailwindcssicon.png', new THREE.CylinderGeometry(3, 3, 3), -50, -130, 0)
+createskillcube('https://i.ibb.co/fMYyjnT/html-icon.png', new THREE.BoxGeometry(4, 4, 4), -70, -140, 0)
+createskillcube('https://i.ibb.co/68ybrXD/next-icon.png', new THREE.BoxGeometry(4, 4, 4), 0, -140, 0)
+createskillcube('https://i.ibb.co/Bt3QyMp/svelte-icon.png', new THREE.BoxGeometry(4, 4, 4), -60, -120, 0)
+createskillcube('https://i.ibb.co/WkxYJ0S/github-icon.png', new THREE.BoxGeometry(4, 4, 4), -30, -120, 0)
+createskillcube('https://i.ibb.co/r5LRCmY/js-icon.png', new THREE.BoxGeometry(4, 4, 4), -40, -150, 0)
+createskillcube('https://i.ibb.co/THPh4NV/react-icon.png', new THREE.BoxGeometry(8, 8, 8), -20, -150, 0)
+createskillcube('https://i.ibb.co/JzV3NgH/css-icon.png', new THREE.BoxGeometry(4, 4, 4), -20, -125, 0)
 
 
 const spaceTexture = new THREE.TextureLoader().load('https://i.ibb.co/X3Vj5G7/space.jpg')
 scence.background = spaceTexture;
+
+
+var projectlist = []
+var projectY = 0
+function createsproject() {
+  const textureLoader = new THREE.TextureLoader()
+  textureLoader.crossOrigin = "Anonymous"
+  const myTexture = textureLoader.load('https://i.ibb.co/JzV3NgH/css-icon.png')
+  const project = new THREE.Mesh(
+    new THREE.BoxGeometry(100, 30, 2),
+    new THREE.MeshBasicMaterial({ map: myTexture })
+  )
+  projectlist = [...projectlist, project]
+  project.position.x = 300 + projectY * 3
+  project.position.y = -5 - projectY
+  project.position.z = 1
+  scence.add(projectlist[projectlist.length - 1])
+}
+createsproject()
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
   baraa.rotation.x += 0.05
   baraa.rotation.z += 0.005
   baraa.rotation.y += 0.01
-  scence.position.x = t * 0.1
-  console.log(t)
+  scence.position.y = t * -0.1
 
   for (var i = 0; i < skillcubelist.length; i++) {
     skillcubelist[i].rotation.x -= 0.1
@@ -96,7 +116,6 @@ function moveCamera() {
 document.body.onscroll = moveCamera
 var Ypos
 window.addEventListener('resize', onWindowResize, false);
-
 function onWindowResize() {
 
   camera.aspect = window.innerWidth / window.innerHeight;
