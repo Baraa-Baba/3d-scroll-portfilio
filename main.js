@@ -1,13 +1,17 @@
 import './src/style.css'
 import './output.css'
 import * as THREE from 'three'
-
-
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
+import './assets/fbx/textures/Lowpoly_Laptop_1.jpg'
+import './assets/fbx/textures/Lowpoly_Laptop_2.jpg'
+import './assets/fbx/textures/Lowpoly_Laptop_Nor_2.jpg'
+import './assets/fbx/textures/Lowpoly_Laptop_Nor_1.jpg'
 var contact = document.getElementById('contact')
 contact.addEventListener('click', () => {
   var contactplace = document.getElementById('contact-me')
   contactplace.scrollIntoView({ behavior: "smooth" })
 })
+
 
 
 const scence = new THREE.Scene()
@@ -62,6 +66,40 @@ scence.add(baraa)
 
 
 Array(2000).fill().forEach(addstar)
+
+
+
+
+const fbxLoader = new FBXLoader()
+fbxLoader.load(
+  'assets/fbx/laptopp.fbx',
+  (object) => {
+    object.traverse(function (child) {
+      if (child.isMesh) {
+
+      }
+    })
+    object.scale.set(.05, .05, .05)
+    object.position.y = -80
+    object.position.x = -25
+    setInterval(() => {
+      object.rotation.y -= 0.05
+      renderer.render(scence, camera)
+    }, 100)
+    scence.add(object)
+  },
+  (xhr) => {
+    console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+  },
+  (error) => {
+    console.log(error)
+  }
+)
+const light = new THREE.PointLight(0xfffff, 1000, 10)
+light.position.set(-30, -80, 25)
+scence.add(light)
+
+
 
 var skillcubelist = []
 function createskillcube(imgurl, shape, x, y, z) {
@@ -206,6 +244,7 @@ scence.add(axesHelper);
 function animate() {
   requestAnimationFrame(animate)
   onWindowResize()
+
   baraa.rotation.x += 0.005
   for (var i = 0; i < skillcubelist.length; i++) {
     skillcubelist[i].rotation.x += 0.005
