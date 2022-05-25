@@ -30,9 +30,10 @@
       <h3 id='something' class="h-12 sm:h-28 text-4xl sm:text-6xl">frontend developer</h3>
       <div class="flex w-[100vw] sm:flex-row flex-col ">
   
-      <div class="sm:inline-block block mr-4 glow-button w-fit">
+      <div class="sm:inline-block block mr-4 w-fit">
       <a  id='contact'
-      class="text-5xl mb-4 cursor-pointer p-4 inline-block border-2 border-white rounded-full  glow-button ">
+      class="text-5xl mb-4 cursor-pointer p-4 inline-block rounded-full 
+       glow-button ">
       contact me
     </a>
     </div>
@@ -84,9 +85,14 @@
     </main>
     <style>
       .glow-button{
-  box-shadow: 0 15px 15px linear-gradient(pink,purple),
-  0 -15px 15px linear-gradient(pink,purple),
-  10 0 15px linear-gradient(pink,purple);
+        border : 2px solid #f0f
+      }
+      .glow-button:hover,.glow-button:focus{
+       
+  box-shadow:
+    0 0 10px #f0f,
+    -2px 0 20px #f0f,
+    2px 0 20px #f0f;
       }
       canvas{
   position: fixed;
@@ -107,6 +113,7 @@ h1,h2,h3,h4,h5,h6{
 .ques:hover~.details{
   display: block;
 }
+
 .about-links{
   color:cyan;
 }
@@ -147,7 +154,7 @@ background-color: rgba(0, 0, 0, 0.5);
   display: block;
   border: 3px solid white;
 }
-.contact-input:focus,.contact-message:focus,.contact-submit:hover{
+.contact-input:focus,.contact-message:focus{
   border: 3px solid rgb(0, 89, 255);
   outline: none;
 }
@@ -166,8 +173,15 @@ background-color: rgba(0, 0, 0, 0.5);
   max-width: 100vw;
   padding: 0.5rem;
   background: transparent;
-  border: 2px solid white;
+  border: 2px solid rgb(0, 89, 255);
 }
+.contact-submit:hover{
+
+  box-shadow:
+    0 0 10px rgb(0, 89, 255),
+    -2px 0 20px rgb(0, 89, 255),
+    2px 0 20px rgb(0, 89, 255);
+      }
 @media (max-width:700px) {
   .contact-input{
     font-size: 2rem;

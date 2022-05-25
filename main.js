@@ -28,8 +28,6 @@ camera.position.setZ(30)
 renderer.render(scence, camera)
 
 
-const ambentLight = new THREE.AmbientLight(0xfffff)
-scence.add(ambentLight)
 
 
 function addstar() {
@@ -47,7 +45,7 @@ const Baraatexture = new THREE.TextureLoader().load('https://i.ibb.co/3YS0Y3j/pr
 
 const baraa = new THREE.Mesh(
   new THREE.BoxGeometry(9, 9, 9),
-  new THREE.MeshBasicMaterial({ map: Baraatexture })
+  new THREE.MeshStandardMaterial({ map: Baraatexture })
 )
 var baraaX
 var baraaY
@@ -58,6 +56,11 @@ if (innerWidth > 900) {
   baraaX = 0
   baraaY = -20
 }
+
+const baraalight = new THREE.PointLight(0xfffffff, 5, 300)
+baraalight.position.set(10, 10, 5)
+scence.add(baraalight)
+
 baraa.position.x = 20
 baraa.position.y = 0
 scence.add(baraa)
@@ -68,7 +71,7 @@ scence.add(baraa)
 Array(2000).fill().forEach(addstar)
 
 
-
+/*
 
 const fbxLoader = new FBXLoader()
 fbxLoader.load(
@@ -82,6 +85,9 @@ fbxLoader.load(
     object.scale.set(.05, .05, .05)
     object.position.y = -80
     object.position.x = -25
+    const light = new THREE.PointLight(0xff000, 1000, 100)
+    light.position.set(-40, -70, 5)
+    scence.add(light)
     setInterval(() => {
       object.rotation.y -= 0.05
       renderer.render(scence, camera)
@@ -95,21 +101,44 @@ fbxLoader.load(
     console.log(error)
   }
 )
-const light = new THREE.PointLight(0xfffff, 1000, 10)
-light.position.set(-30, -80, 25)
+
+
+const light2 = new THREE.PointLight(0xfffff, 1000, 100)
+light2.position.set(-30, -70, 5)
+scence.add(light2)
+*/
+
+const light = new THREE.PointLight(0xfffff, 10, 100)
+light.position.set(20, -210, 0)
 scence.add(light)
 
+var loader = new THREE.TextureLoader();
+loader.load('https://i.ibb.co/tPVDQ4T/tailwindcssicon.png', function (texture) {
 
+  var geometry = new THREE.SphereGeometry(200, 20, 20);
+
+  var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5 });
+  var mesh = new THREE.Mesh(geometry, material);
+  mesh.position.y = -200
+  mesh.position.x = 0
+  group.add(mesh);
+
+});
 
 var skillcubelist = []
 function createskillcube(imgurl, shape, x, y, z) {
   const textureLoader = new THREE.TextureLoader()
   textureLoader.crossOrigin = "Anonymous"
   const myTexture = textureLoader.load(imgurl)
+  var material = new THREE.MeshStandardMaterial({ map: myTexture })
+  material.side = THREE.DoubleSide
   const skillcube = new THREE.Mesh(
     shape,
-    new THREE.MeshBasicMaterial({ map: myTexture })
+    material
   )
+  const light = new THREE.PointLight(0xffffff, 8, 40)
+  light.position.set(x - 45, y + 25, z)
+  scence.add(light)
   skillcubelist = [...skillcubelist, skillcube]
   skillcube.position.x = x
   skillcube.position.y = y
@@ -130,9 +159,9 @@ if (innerWidth < 800) {
   createskillcube('https://i.ibb.co/r5LRCmY/js-icon.png',
     new THREE.BoxGeometry(4, 4, 4), 10, -130, 0)
   createskillcube('https://i.ibb.co/THPh4NV/react-icon.png',
-    new THREE.BoxGeometry(8, 8, 8), 10, -140, 0)
+    new THREE.BoxGeometry(4, 4, 4), -10, -120, 0)
   createskillcube('https://i.ibb.co/JzV3NgH/css-icon.png',
-    new THREE.BoxGeometry(4, 4, 4), 10, -115, 0)
+    new THREE.BoxGeometry(4, 4, 4), 10, -110, 0)
 
 } else {
   createskillcube('https://i.ibb.co/tPVDQ4T/tailwindcssicon.png',
@@ -148,7 +177,7 @@ if (innerWidth < 800) {
   createskillcube('https://i.ibb.co/r5LRCmY/js-icon.png',
     new THREE.BoxGeometry(4, 4, 4), -10, -160, 0)
   createskillcube('https://i.ibb.co/THPh4NV/react-icon.png',
-    new THREE.BoxGeometry(8, 8, 8), 10, -160, 0)
+    new THREE.BoxGeometry(4, 4, 4), 10, -160, 0)
   createskillcube('https://i.ibb.co/JzV3NgH/css-icon.png',
     new THREE.BoxGeometry(4, 4, 4), 10, -135, 0)
 
@@ -206,15 +235,15 @@ function onWindowResize() {
     skillcubelist[3].position.y = -130
     skillcubelist[4].position.y = -130
     skillcubelist[5].position.y = -130
-    skillcubelist[6].position.y = -140
-    skillcubelist[7].position.y = -115
+    skillcubelist[6].position.y = -120
+    skillcubelist[7].position.y = -110
     skillcubelist[0].position.x = 70
     skillcubelist[1].position.x = 0
     skillcubelist[2].position.x = 10
     skillcubelist[3].position.x = -10
     skillcubelist[4].position.x = 0
     skillcubelist[5].position.x = 10
-    skillcubelist[6].position.x = 10
+    skillcubelist[6].position.x = -10
     skillcubelist[7].position.x = 10
   } else {
     skillcubelist[0].position.y = -140
