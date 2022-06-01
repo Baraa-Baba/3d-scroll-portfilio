@@ -1,17 +1,9 @@
-import './src/style.css'
-import './output.css'
-import * as THREE from 'three'
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
-import './assets/fbx/textures/Lowpoly_Laptop_1.jpg'
-import './assets/fbx/textures/Lowpoly_Laptop_2.jpg'
-import './assets/fbx/textures/Lowpoly_Laptop_Nor_2.jpg'
-import './assets/fbx/textures/Lowpoly_Laptop_Nor_1.jpg'
+
 var contact = document.getElementById('contact')
 contact.addEventListener('click', () => {
   var contactplace = document.getElementById('contact-me')
   contactplace.scrollIntoView({ behavior: "smooth" })
 })
-
 
 
 const scence = new THREE.Scene()
@@ -28,19 +20,6 @@ camera.position.setZ(30)
 renderer.render(scence, camera)
 
 
-
-
-function addstar() {
-  const goematry = new THREE.SphereGeometry(0.25, 24, 24)
-  const matriel = new THREE.MeshBasicMaterial({ color: 0xffffff })
-  const star = new THREE.Mesh(goematry, matriel)
-
-  const x = THREE.MathUtils.randFloatSpread(200)
-  const y = THREE.MathUtils.randFloatSpread(1000)
-  const z = THREE.MathUtils.randFloatSpread(200)
-  star.position.set(x, y, z)
-  scence.add(star)
-}
 const Baraatexture = new THREE.TextureLoader().load('https://i.ibb.co/3YS0Y3j/profile.jpg')
 
 const baraa = new THREE.Mesh(
@@ -68,18 +47,17 @@ scence.add(baraa)
 
 
 
-Array(2000).fill().forEach(addstar)
 
 
 /*
-
+ 
 const fbxLoader = new FBXLoader()
 fbxLoader.load(
   'assets/fbx/laptopp.fbx',
   (object) => {
     object.traverse(function (child) {
       if (child.isMesh) {
-
+ 
       }
     })
     object.scale.set(.05, .05, .05)
@@ -101,29 +79,14 @@ fbxLoader.load(
     console.log(error)
   }
 )
-
-
+ 
+ 
 const light2 = new THREE.PointLight(0xfffff, 1000, 100)
 light2.position.set(-30, -70, 5)
 scence.add(light2)
 */
 
-const light = new THREE.PointLight(0xfffff, 10, 100)
-light.position.set(20, -210, 0)
-scence.add(light)
 
-var loader = new THREE.TextureLoader();
-loader.load('https://i.ibb.co/tPVDQ4T/tailwindcssicon.png', function (texture) {
-
-  var geometry = new THREE.SphereGeometry(200, 20, 20);
-
-  var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5 });
-  var mesh = new THREE.Mesh(geometry, material);
-  mesh.position.y = -200
-  mesh.position.x = 0
-  group.add(mesh);
-
-});
 
 var skillcubelist = []
 function createskillcube(imgurl, shape, x, y, z) {
@@ -185,8 +148,38 @@ if (innerWidth < 800) {
 
 const spaceTexture = new THREE.TextureLoader().load('https://i.ibb.co/X3Vj5G7/space.jpg')
 scence.background = spaceTexture;
+const ambientlight = new THREE.AmbientLight(0xffffff, 0.5)
+scence.add(ambientlight)
+
+function create3dtext(texturl, scale, x, y, z, depth, lightintesity) {
+  let gltfloader = new THREE.GLTFLoader()
+
+  const light = new THREE.PointLight(0xe2c095, lightintesity, 50)
+  light.position.set(x, y, z + 5)
+  light.rotation.x = 200
+  scence.add(light)
+
+  if (innerWidth < 600) {
+    scale = scale / 2
+  }
+  gltfloader.load(texturl, function (gltf) {
+    text = gltf.scene.children[0]
+    text.scale.set(scale, scale, depth)
+    text.position.set(x, y, z)
+    text.rotation.x = 100
+    scence.add(gltf.scene)
+    renderer.render(scence, camera)
+  })
+}
+
+create3dtext('assets/3dtext/my3dname.glb', 0.2, 0, 15, 0, 0.1, 5)
+create3dtext('assets/3dtext/frontenddev.glb', 0.2, 0, 10, 0, 0.05, 0.1)
+create3dtext('assets/3dtext/Abouttext.glb', 0.15, 0, -30, 0, 0.3, 3)
+create3dtext('assets/3dtext/skillstext.glb', 0.2, 0, -110, 0, 0.4, 1)
+create3dtext('assets/3dtext/contacttext.glb', 0.2, 0, -170, 0, 0.3, 2)
 
 
+/*
 var projectlist = []
 var projectY = 0
 function createsproject() {
@@ -204,6 +197,7 @@ function createsproject() {
   scence.add(projectlist[projectlist.length - 1])
 }
 createsproject()
+*/
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
   baraa.rotation.x += 0.05
@@ -303,6 +297,5 @@ const int = setInterval(() => {
     }
   }
 }, 350)
-
 
 

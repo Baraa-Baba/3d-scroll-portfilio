@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./output.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="shortcut icon" href="./assets/profile.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="./assets/fbx/textures/Lowpoly_Laptop_2.jpg">
     <link rel="shortcut icon" href="./assets/fbx/textures/Lowpoly_Laptop_Nor_1.jpg">
     <link rel="shortcut icon" href="./assets/fbx/textures/Lowpoly_Laptop_Nor_2.jpg">
+
     <title>Baraa Baba</title>
   </head>
   <body>
@@ -17,17 +18,10 @@
     <canvas id="bg"></canvas>
     <main class="main-cont  ">
 
-
-
-      
-
-
-
-
       <h1 id="demo"></h1>
       <div class="inroduction h-[100vh] w-[100vw] ">
-      <h1 class='m-0 h-fit text-6xl sm:text-8xl'>Baraa Baba</h1>
-      <h3 id='something' class="h-12 sm:h-28 text-4xl sm:text-6xl">frontend developer</h3>
+      <h1 class='m-0 h-fit text-6xl sm:text-8xl invisible'>Baraa Baba</h1>
+      <h3 id='something' class="h-12 sm:h-28 text-4xl invisible sm:text-6xl">frontend developer</h3>
       <div class="flex w-[100vw] sm:flex-row flex-col ">
   
       <div class="sm:inline-block block mr-4 w-fit">
@@ -49,8 +43,7 @@
   </div>
 </div>
 <div class="about p-0 md:pl-10 md:pr-10 min-h-[100vh]">
-  <h3 class="sm:h-32 text-4xl text-center h-12 sm:text-6xl">About Me</h3>
-  <div class="card  w-[100vw] md:w-[60vw] mb-10 sm:mb-10 ml-0 mr-0 md:ml-auto ">
+  <div id="left" class="card  w-[100vw] md:w-[60vw] mb-10 sm:mb-10 ml-0 mr-0 md:ml-auto ">
     I am Baraa a teen from lebanon a frontend developer and i love programming and
      <a href="https://dev.to/baraa_baba" class="about-links" target="_blank" rel="noopener noreferrer">
         blogging</a> and everything about tech I also love 
@@ -66,12 +59,11 @@
   </div>
 </div>
   <div class="skils h-[100vh]">
-    <h1>skills</h1>
+
   </div>
   
   <div id='contact-me' class="contact-cont">
     <div>
-        <h1 class="contact-header">Contact Me</h1>
         <form target="_blank" action="https://formsubmit.co/9d6d1a7d16373e389623c00f48207d1c" method="POST">
               <input type="text" name="name"  class="contact-input" placeholder="Full Name" required />
                <input type="email" name="email" class="contact-input" placeholder="Email Address" required />
@@ -94,7 +86,7 @@
     -2px 0 20px #f0f,
     2px 0 20px #f0f;
       }
-      canvas{
+  canvas{
   position: fixed;
   left: 0;
   top: 0;
@@ -103,7 +95,6 @@ h1,h2,h3,h4,h5,h6{
   height: 3rem;
 }
 .main-cont{
-  display: none;
   position: absolute;
   color: white;
   width: 100vw;
@@ -129,7 +120,10 @@ h1,h2,h3,h4,h5,h6{
 background-color: rgba(0, 0, 0, 0.5);
 }
 #right{
-  margin: 0 auto 0 0; 
+  margin: 0 auto 1rem 0; 
+}
+#left{
+  margin: 0 0 1rem auto ;
 }
 @media (max-width: 768px) {
     .card{
@@ -195,8 +189,10 @@ background-color: rgba(0, 0, 0, 0.5);
   }
 }
     </style>
-
-    <script type="module" src="/main.js"></script>
+  
+  <script  src="three.min.js"></script>
+  <script src="GLTFLoader.js"></script>
+    <script  src="/main.js"></script>
     <script src="./typingEffect.js"></script>
   </body>
 </html>
