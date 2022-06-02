@@ -174,8 +174,8 @@ function create3dtext(texturl, scale, x, y, z, depth, lightintesity) {
 
 create3dtext('assets/3dtext/my3dname.glb', 0.2, 0, 15, 0, 0.1, 5)
 create3dtext('assets/3dtext/frontenddev.glb', 0.2, 0, 10, 0, 0.05, 0.1)
-create3dtext('assets/3dtext/Abouttext.glb', 0.15, 0, -30, 0, 0.3, 3)
-create3dtext('assets/3dtext/skillstext.glb', 0.2, 0, -110, 0, 0.4, 1)
+create3dtext('assets/3dtext/Abouttext.glb', 0.15, 0, -30, 0, 0.1, 3)
+create3dtext('assets/3dtext/skillstext.glb', 0.2, 0, -110, 0, 0.2, 0.3)
 create3dtext('assets/3dtext/contacttext.glb', 0.2, 0, -170, 0, 0.3, 2)
 
 
