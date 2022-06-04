@@ -20,6 +20,29 @@ camera.position.setZ(30)
 renderer.render(scence, camera)
 
 
+let gltfloader = new THREE.GLTFLoader()
+
+gltfloader.load('assets/spacemangltf/scene.gltf', function (gltf) {
+  spaceman = gltf.scene.children[0]
+  spaceman.scale.set(10, 10, 10)
+  spaceman.position.set(20, -15, 5)
+  scence.add(gltf.scene)
+  renderer.render(scence, camera)
+  var sign = -1
+  setInterval(() => {
+    spaceman.position.y += 0.03 * sign
+    i++
+    if (i == 20) {
+      i = 0
+      sign = sign * -1
+    }
+    renderer.render(scence, camera)
+  }, 100)
+})
+
+
+
+/*
 const Baraatexture = new THREE.TextureLoader().load('https://i.ibb.co/3YS0Y3j/profile.jpg')
 
 const baraa = new THREE.Mesh(
@@ -43,7 +66,7 @@ scence.add(baraalight)
 baraa.position.x = 20
 baraa.position.y = 0
 scence.add(baraa)
-
+/*
 
 
 
@@ -175,8 +198,29 @@ function create3dtext(texturl, scale, x, y, z, depth, lightintesity) {
 create3dtext('assets/3dtext/my3dname.glb', 0.2, 0, 15, 0, 0.1, 5)
 create3dtext('assets/3dtext/frontenddev.glb', 0.2, 0, 10, 0, 0.05, 0.1)
 create3dtext('assets/3dtext/Abouttext.glb', 0.15, 0, -30, 0, 0.1, 3)
-create3dtext('assets/3dtext/skillstext.glb', 0.2, 0, -110, 0, 0.2, 0.3)
-create3dtext('assets/3dtext/contacttext.glb', 0.2, 0, -170, 0, 0.3, 2)
+create3dtext('assets/3dtext/skillstext.glb', 0.2, 0, -110, 0, 0.1, 0.3)
+create3dtext('assets/3dtext/contacttext.glb', 0.2, 0, -190, 0, 0.3, 2)
+
+
+const light = new THREE.PointLight(0xffffff, 10, 200)
+light.position.set(-20, -80, 5)
+light.rotation.x = 200
+scence.add(light)
+
+gltfloader.load('assets/tablet.glb', function (gltf) {
+  text = gltf.scene.children[0]
+  text.scale.set(0.1, 0.1, 0.1)
+  text.position.set(-20, -60, 0)
+  scence.add(gltf.scene)
+  renderer.render(scence, camera)
+})
+
+
+const spacelight = new THREE.PointLight(0xffffff, 5, 50)
+spacelight.position.set(23, -25, 15)
+spacelight.rotation.x = 200
+scence.add(spacelight)
+
 
 
 /*
@@ -200,9 +244,6 @@ createsproject()
 */
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
-  baraa.rotation.x += 0.05
-  baraa.rotation.z += 0.005
-  baraa.rotation.y += 0.01
   scence.position.y = t * -0.1
 
   for (var i = 0; i < skillcubelist.length; i++) {
@@ -215,13 +256,6 @@ document.body.onscroll = moveCamera
 var Ypos
 window.addEventListener('resize', onWindowResize, false);
 function onWindowResize() {
-  if (innerWidth > 900) {
-    baraa.position.x = 20
-    baraa.position.y = 0
-  } else {
-    baraa.position.x = 0
-    baraa.position.y = -20
-  }
   if (innerWidth < 800) {
     skillcubelist[0].position.y = -110
     skillcubelist[1].position.y = -120
@@ -262,13 +296,9 @@ function onWindowResize() {
 
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
-const axesHelper = new THREE.AxesHelper(5);
-scence.add(axesHelper);
 function animate() {
   requestAnimationFrame(animate)
   onWindowResize()
-
-  baraa.rotation.x += 0.005
   for (var i = 0; i < skillcubelist.length; i++) {
     skillcubelist[i].rotation.x += 0.005
     skillcubelist[i].rotation.y += 0.01
