@@ -1,0 +1,11 @@
+Model Information:
+* title:	Coffee Mug (School Project)
+* source:	https://sketchfab.com/3d-models/coffee-mug-school-project-5f5ccee1514c440887c072fae8e0d699
+* author:	Ole Gunnar Isager (https://sketchfab.com/FrenchBaguette)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Coffee Mug (School Project)" (https://sketchfab.com/3d-models/coffee-mug-school-project-5f5ccee1514c440887c072fae8e0d699) by Ole Gunnar Isager (https://sketchfab.com/FrenchBaguette) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

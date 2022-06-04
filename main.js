@@ -36,6 +36,7 @@ gltfloader.load('assets/spacemangltf/scene.gltf', function (gltf) {
       i = 0
       sign = sign * -1
     }
+
     renderer.render(scence, camera)
   }, 100)
 })
@@ -199,8 +200,23 @@ create3dtext('assets/3dtext/my3dname.glb', 0.2, 0, 15, 0, 0.1, 5)
 create3dtext('assets/3dtext/frontenddev.glb', 0.2, 0, 10, 0, 0.05, 0.1)
 create3dtext('assets/3dtext/Abouttext.glb', 0.15, 0, -30, 0, 0.1, 3)
 create3dtext('assets/3dtext/skillstext.glb', 0.2, 0, -110, 0, 0.1, 0.3)
-create3dtext('assets/3dtext/contacttext.glb', 0.2, 0, -190, 0, 0.3, 2)
 
+
+gltfloader.load('assets/coffee_mug/scene.gltf', function (gltf) {
+  coffee = gltf.scene.children[0]
+  coffee.scale.set(10, 10, 10)
+  coffee.position.set(-20, -375, 10)
+  scence.add(gltf.scene)
+  renderer.render(scence, camera)
+})
+
+gltfloader.load('assets/little_planet_earth/scene.gltf', function (gltf) {
+  planet = gltf.scene.children[0]
+  planet.scale.set(0.03, 0.03, 0.03)
+  planet.position.set(20, -230, 10)
+  scence.add(gltf.scene)
+  renderer.render(scence, camera)
+})
 
 const light = new THREE.PointLight(0xffffff, 10, 200)
 light.position.set(-20, -80, 5)
@@ -299,6 +315,7 @@ function onWindowResize() {
 function animate() {
   requestAnimationFrame(animate)
   onWindowResize()
+
   for (var i = 0; i < skillcubelist.length; i++) {
     skillcubelist[i].rotation.x += 0.005
     skillcubelist[i].rotation.y += 0.01
