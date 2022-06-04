@@ -210,13 +210,6 @@ gltfloader.load('assets/coffee_mug/scene.gltf', function (gltf) {
   renderer.render(scence, camera)
 })
 
-gltfloader.load('assets/little_planet_earth/scene.gltf', function (gltf) {
-  planet = gltf.scene.children[0]
-  planet.scale.set(0.03, 0.03, 0.03)
-  planet.position.set(20, -200, 10)
-  scence.add(gltf.scene)
-  renderer.render(scence, camera)
-})
 
 const light = new THREE.PointLight(0xffffff, 10, 200)
 light.position.set(-20, -80, 5)
