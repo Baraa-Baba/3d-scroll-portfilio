@@ -19,6 +19,29 @@ camera.position.setZ(30)
 
 renderer.render(scence, camera)
 
+const Baraatexture = new THREE.TextureLoader().load('https://i.ibb.co/3YS0Y3j/profile.jpg')
+
+const baraa = new THREE.Mesh(
+  new THREE.BoxGeometry(9, 9, 9),
+  new THREE.MeshStandardMaterial({ map: Baraatexture })
+)
+var baraaX
+var baraaY
+if (innerWidth > 900) {
+  baraaX = 20
+  baraaY = 0
+} else {
+  baraaX = 0
+  baraaY = -20
+}
+
+const baraalight = new THREE.PointLight(0xfffffff, 5, 300)
+baraalight.position.set(10, 10, 5)
+scence.add(baraalight)
+
+baraa.position.x = 20
+baraa.position.y = 0
+scence.add(baraa)
 
 let gltfloader = new THREE.GLTFLoader()
 
@@ -27,6 +50,7 @@ gltfloader.load('assets/spacemangltf/scene.gltf', function (gltf) {
   spaceman.scale.set(10, 10, 10)
   spaceman.position.set(20, -15, 5)
   scence.add(gltf.scene)
+  scence.remove(baraa)
   renderer.render(scence, camera)
   var sign = -1
   setInterval(() => {
